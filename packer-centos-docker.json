@@ -1,0 +1,36 @@
+{
+    "variables": {
+        "aws_access_key": "",
+        "aws_secret_key": "",
+        "region": "",
+        "source_ami": "ami-*****",
+        "instance_type": "t1.micro",
+        "ssh_username": "root"
+    },
+
+    "builders": [{
+        "type": "amazon-ebs",
+        "access_key": "{{user `aws_access_key`}}",
+        "secret_key": "{{user `aws_secret_key`}}",
+        "region": "{{user `region`}}",
+        "source_ami": "{{user `source_ami`}}",
+        "instance_type": "{{user `instance_type`}}",
+        "ssh_username": "{{user `ssh_username`}}",
+        "ssh_port": 22,
+        "ssh_timeout": "10000s",
+        "ami_name": "centos-docker-{{timestamp}}"
+    }],
+
+    "provisioners": [{
+        "type": "shell",
+        "scripts": [
+            "sh/addrepo.sh",
+            "sh/yum-utils.sh",
+            "sh/makecache.sh",
+            "sh/update.sh",
+            "sh/docker-ce.sh",
+            "sh/enablesystemdservice.sh",
+            "sh/startsystemdservice.sh"
+        ]
+    }]
+}
