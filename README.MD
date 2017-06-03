@@ -4,7 +4,7 @@ Ever need to fire up a CentOS Docker host really quickly? Look no further.
 
 ## Depends on:
 * [Packer](https://www.packer.io)
-* [AWS](https://www.aws.amazon.com)
+* [AWS](https://aws.amazon.com)
 
 ### Usage
 
